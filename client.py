@@ -10,7 +10,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #AF_INET = IPV4. Use AF_INET6 for IPV6
 #SOCK_STREAM denotes TCP usage
 
-s.connect((socket.gethostname(),1232))
+s.connect((socket.gethostname(),1230))
 while True:
 	def isData():
 		return select.select([sys.stdin],[],[],0) == ([sys.stdin],[],[])

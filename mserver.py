@@ -2,6 +2,7 @@ import socket
 import _thread
 import time
 import queue
+import sys
 controlstack = queue.Queue(50)
 from nes_py.wrappers import JoypadSpace
 import random
@@ -51,7 +52,7 @@ def listener ():
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	#AF_INET for IPV4. Use AF_INET6 for IPV6
 	#SOCK_STREAM denotes TCP usage
-	s.bind(('172.20.10.8',6970))
+	s.bind((sys.argv[1],6970))
 	#servers bind. clients connect.
 	s.listen()
 	#listening queue to handle multiple connections

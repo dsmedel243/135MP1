@@ -7,12 +7,15 @@ Mae Mabanta
 Danica Medel
 
 # Server Program:
+The Server program collects inputs from connected client programs and sends them into a queue for the Super Mario Bros game to use as input. This is achieved through multithreading and mutex lock implementations. The Server is also responsible for rendering the game window and game output can only be viewed on the machine running the server. 
+
 >Set up
 Libraries used 
 
 
 
 # Client Program
+The client program is the main user interface of this project. Inputs to the game are typed into the terminal, and connection to the server (as well as the client itself) are terminated using the 'p' key
 
 Libraries used:
 Pynput on_release and on_pressed

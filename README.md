@@ -1,7 +1,7 @@
 # 135MP1
 ## Coe 135 Project 1stSY1920
 
->Collaborators: 
+Collaborators: 
 Larry Garriz, Mae Mabanta, Danica Medel
 
 
@@ -9,11 +9,10 @@ Larry Garriz, Mae Mabanta, Danica Medel
 The Server program collects inputs from connected client programs and sends them into a queue for the Super Mario Bros game to use as input. This is achieved through multithreading and mutex lock implementations. The Server is also responsible for rendering the game window and game output can only be viewed on the machine running the server. 
 
 #### Setting up
-Download mserver.py 
+Download mserver.py and make sure libraries have been installed.
 #### Running Server program
 On the terminal, run the following: `python mserver.py <IP address>`
-#### Set up
-Libraries used: 
+#### Libraries used: 
 Nes-Py
 Super Mario Bros OpenAI Gym 
 
@@ -27,7 +26,8 @@ The client program is the main user interface of this project. Inputs to the gam
 On the terminal, run the following: `python client.py <IP address>`
 
 Note: The IP address must be the IP address of the Server program. 
-
+#### Setting up
+Download client.py and make sure libraries have been installed.
 #### Libraries used:
 Pynput `on_release` and `on_pressed`
 Termios

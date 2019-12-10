@@ -13,8 +13,7 @@ Download mserver.py and make sure libraries have been installed.
 #### Running Server program
 On the terminal, run the following: `python mserver.py <IP address>`
 #### Libraries used: 
-Nes-Py
-Super Mario Bros OpenAI Gym 
+Nes-Py, Super Mario Bros, OpenAI Gym 
 
 
 
@@ -29,7 +28,7 @@ Note: The IP address must be the IP address of the Server program.
 #### Setting up
 Download client.py and make sure libraries have been installed.
 #### Libraries used:
-Pynput `on_release` and `on_pressed`
+Pynput `on_release` and `on_pressed`,
 Termios
 
 #### Client Controls

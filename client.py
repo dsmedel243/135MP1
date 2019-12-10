@@ -50,9 +50,6 @@ def on_release(key):
 	global d
 	global m
 
-	if key == keyboard.Key.esc:
-		return False
-
 	msg = format(key)
 	if msg == "'w'":
 		w = 0

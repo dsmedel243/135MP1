@@ -2,9 +2,8 @@ import socket
 import _thread
 import time
 
-#from queue import LifoQueue
 import queue
-controlstack = queue.Queue()
+controlstack = queue.Queue(50)
 
 from nes_py.wrappers import JoypadSpace
 import random
@@ -17,71 +16,63 @@ import keyboard
 #from nes_py.wrappers import JoypadSpace
 import gym_super_mario_bros
 from gym_super_mario_bros.actions import COMPLEX_MOVEMENT
-env = gym_super_mario_bros.make('SuperMarioBros-v1')
+env = gym_super_mario_bros.make('SuperMarioBros-v0')
 env = JoypadSpace(env, COMPLEX_MOVEMENT)
 
 ls = [0]
 control = 0
 new = 0
 
-
-#VERSION 3: Temporary functionality, thread terminates when p key is received
-#define thread function
 def controls (clientsocket, address):
 	global controlstack
-	global new
+	global lock
 	print(f"Connection from {address} established.")
+
 	msg = clientsocket.recv(1)
-	#print(new)
-	k = msg.decode("utf-8")
-	#print(k)
-	while k != 'p':
+	k = msg.decode('utf-8')
+	while k != 4:
 		msg = clientsocket.recv(1)
-		#new = 1
-		k = msg.decode("utf-8")
-		#control = k;
-		controlstack.put(k)		
-	print(f"{address} disconnected.")
+		k = int(msg.decode('utf-8'))
+## CRITICAL SECTION ##
+		if(lock.locked() != True):
+			lock.acquire()
+			#lock aquired			
+			controlstack.put(int(k))	
+			lock.release()	
+			#lock released	
+		if k == 4:
+			print(f"{address} disconnected.")
+			clientsocket.close()
+			exit()			
 	exit()
 
 def listener ():
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	#AF_INET for IPV4. Use AF_INET6 for IPV6
 	#SOCK_STREAM denotes TCP usage
-
-	s.bind((socket.gethostname(),1269))
-	#socket.gethostname() a temporary solution. only applies for same device communication
+	s.bind(('172.20.10.8',6970))
 	#servers bind. clients connect.
-
-	s.listen(5)#5 connections maximum for the server
+	s.listen()#5 connections maximum for the server
 	#listening queue to handle multiple connections
 	while True:
 		clientsocket, address = s.accept()
 		_thread.start_new_thread( controls, (clientsocket, address))	
 
-
+lock = _thread.allocate_lock()
 _thread.start_new_thread( listener, ())
 
 done = True
 for step in range(50000):
-
 	if done:
 		state = env.reset()
-
 	if(controlstack.empty()):
 		control = 0
 	else:
-		control = int(controlstack.get())
-		#control = controlstack[0]
-		#controlstack[0] = 0
-		#controlstack = shift(-1, controlstack)
-	print(control)
-
+		control = controlstack.get()
+		if control == 9:
+			control = 10
 	action = control
-    #action = env.action_space.sample()
-    #print(action)
 	control = 0
 	state, reward, done, info = env.step(action)
 	env.render()
-	ls[0] =0
 env.close()

@@ -1,18 +1,18 @@
 # 135MP1
-Coe 135 Project 1stSY1920
+## Coe 135 Project 1stSY1920
 
-Collaborators: 
+>Collaborators: 
 Larry Garriz
 Mae Mabanta
 Danica Medel
 
-Server Program:
-
+# Server Program:
+>Set up
 Libraries used 
 
 
 
-Client Program
+# Client Program
 
 Libraries used:
 Pynput on_release and on_pressed
@@ -20,7 +20,16 @@ Termios
 Thread
 Socket
 OS
+> Client Controls
 
+| Keyboard input| Action        |
+| ------------- |:-------------:|
+| w      | jump |
+| s      | crouch      |
+| a | left      |
+| d | right     |
+
+# References
 ```
 @misc{gym-super-mario-bros,
   author = {Christian Kauten},

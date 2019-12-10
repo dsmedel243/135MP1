@@ -73,7 +73,7 @@ def client():
 	global m
 	ls = '0'
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	s.connect(('172.20.10.8', 6970))
+	s.connect((sys.argv[1], 6970))
 	while 1:
 		if w==1 or a==1 or ss==1 or d==1 or m==1:
 			if w == 1:

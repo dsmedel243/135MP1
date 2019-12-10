@@ -21,6 +21,7 @@ Thread
 Socket
 OS
 
+```
 @misc{gym-super-mario-bros,
   author = {Christian Kauten},
   howpublished = {GitHub},
@@ -28,3 +29,4 @@ OS
   URL = {https://github.com/Kautenja/gym-super-mario-bros},
   year = {2018},
 }
+```

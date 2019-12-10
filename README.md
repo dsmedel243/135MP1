@@ -46,7 +46,7 @@ Termios
 This program could be run only on Linux. Termios on the client program is limited to Unix users only. 
 
 ## References
-[https://www.twitch.tv/twitchplayspokemon](Twitch Plays Pokemon)
+[Twitch Plays Pokemon](https://www.twitch.tv/twitchplayspokemon)
 
 ```
 @misc{gym-super-mario-bros,

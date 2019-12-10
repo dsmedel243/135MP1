@@ -8,9 +8,9 @@ import keyboard
 
 #from nes_py.wrappers import JoypadSpace
 import gym_super_mario_bros
-from gym_super_mario_bros.actions import RIGHT_ONLY
+from gym_super_mario_bros.actions import COMPLEX_MOVEMENT
 env = gym_super_mario_bros.make('SuperMarioBros-v1')
-env = JoypadSpace(env, RIGHT_ONLY)
+env = JoypadSpace(env, COMPLEX_MOVEMENT)
 
 ls = [0]
 
@@ -25,26 +25,32 @@ def on_release(key):
 		return False
 
 done = True
-for step in range(5000):
+for step in range(50000):
 
     if done:
         state = env.reset()
         
-    if keyboard.is_pressed('right'):
+    if keyboard.is_pressed('d'):
         print('1')
-        ls[0] = 1
-    elif keyboard.is_pressed('left'):
+        ls[0] = 1 #1 is walk right
+    elif keyboard.is_pressed('a'):
         print('2')
-        ls[0] = 2
-    elif keyboard.is_pressed('up'):
+        ls[0] = 8 #8 is walk left
+    elif keyboard.is_pressed('m'):
         print('4')
-        ls[0] = 4
-    elif keyboard.is_pressed('down'):
+        ls[0] =4 #4 is jump right
+    elif keyboard.is_pressed('w'):
         print('3')
-        ls[0] =3
+        ls[0] =5 # 5 is jump straight
+    elif keyboard.is_pressed('s'):
+        print('2')
+        ls[0] = 11 #useless so far?
+    elif keyboard.is_pressed('n'):
+        print('3')
+        ls[0] =7 #7 is jump left
     
     action = ls[0]
-    action = env.action_space.sample()
+    #action = env.action_space.sample()
     print(action)
 
     state, reward, done, info = env.step(action)
